@@ -10,7 +10,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb+srv://savicmarina993:user123@cluster0.vundx.mongodb.net/Ecommerce-mern?retryWrites=true&w=majority&appName=Cluster0");
+mongoose.connect("");
 
 
 app.get("/", (req,res) => {
