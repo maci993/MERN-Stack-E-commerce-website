@@ -51,6 +51,17 @@ const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
+  const getTotalCartItems = () => {
+    let totalItem = 0;
+    for (const item in cartItems) {
+      if (cartItems[item] > 0) {
+        totalItem += cartItems[item]
+
+      }
+    }
+    return totalItem;
+  }
+
   useEffect(() => {
     const totalAmount = getTotalCartAmount();
     console.log("Total Cart Amount on cartItems change:", getTotalCartAmount());
@@ -62,6 +73,7 @@ const ShopContextProvider = (props) => {
 
   const contextValue = {
     getTotalCartAmount,
+    getTotalCartItems,
     all_products,
     cartItems,
     addToCart,
