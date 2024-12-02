@@ -10,10 +10,14 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:5173" }));
 
+<<<<<<< HEAD
 // const uploadDir = "./upload/images";
 // if (!fs.existsSync(uploadDir)) {
 //     fs.mkdirSync(uploadDir, { recursive: true });
 // }
+=======
+mongoose.connect("");
+>>>>>>> 27af4f4f6ef503ea34c68579170aaeb67bfd9348
 
 mongoose.connect(
   "mongodb+srv://savicmarina993:user123@cluster0.vundx.mongodb.net/Ecommerce-mern?retryWrites=true&w=majority&appName=Cluster0"
@@ -193,9 +197,18 @@ app.post("/login", async (req, res) => {
 })
 
 app.listen(port, (error) => {
+<<<<<<< HEAD
   if (!error) {
     console.log("Server is running on port" + port);
   } else {
     console.log("Error:" + error);
   }
 });
+=======
+    if (!error) {
+        console.log("Server is running on port" + port);
+    } else {
+        console.log("Error:" + error);
+    }
+})
+>>>>>>> 27af4f4f6ef503ea34c68579170aaeb67bfd9348
