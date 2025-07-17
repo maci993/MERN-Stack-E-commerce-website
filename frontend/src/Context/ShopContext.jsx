@@ -1,39 +1,76 @@
 import React, { useState, createContext, useEffect } from "react";
-import all_products from "../assets/all_products";
 
 export const ShopContext = createContext(null);
 
 const getDefaultCart = () => {
   let cart = {};
-  if (Array.isArray(all_products) && all_products.length > 0) {
-    for (let index = 0; index < all_products.length; index++) {
-      if (all_products[index] && all_products[index].id !== undefined) {
-        cart[all_products[index].id] = 0;
-      }
-    }
-  } else {
-    console.warn("all_products is not defined or empty");
+  for (let index = 0; index < 300; index++) {
+    cart[index] = 0;
   }
   return cart;
 };
 
 const ShopContextProvider = (props) => {
+  const [all_products, setAll_products] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
+  useEffect(() => {
+    fetch('http://localhost:4000/allproducts')
+      .then((response) => response.json())
+      .then((data) => setAll_products(data));
+
+    if (localStorage.getItem('auth-token')) {
+      fetch('http://localhost:4000/getcart', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'auth-token': `${localStorage.getItem('auth-token')}`,
+          'Content-Type': 'application/json',
+        },
+        body: "",
+      })
+        .then((response) => response.json())
+        .then((data) => setCartItems(data));
+    }
+  }, []);
   const addToCart = (itemId) => {
     setCartItems((prev) => {
       const updatedCart = { ...prev, [itemId]: prev[itemId] + 1 };
-      // console.log("Updated Cart Items after addToCart:", updatedCart);
       return updatedCart;
     });
+    if (localStorage.getItem('auth-token')) {
+      fetch('http://localhost:4000/addtocart', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'auth-token': `${localStorage.getItem('auth-token')}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "itemId": itemId }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+    }
   };
 
   const removeFromCart = (itemId) => {
     setCartItems((prev) => {
       const updatedCart = { ...prev, [itemId]: prev[itemId] - 1 };
-      // console.log("Updated Cart Items after removeFromCart:", updatedCart);
       return updatedCart;
     });
+    if (localStorage.getItem('auth-token')) {
+      fetch('http://localhost:4000/removefromcart', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'auth-token': `${localStorage.getItem('auth-token')}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ "itemId": itemId }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+    }
   };
 
   const getTotalCartAmount = () => {
@@ -61,15 +98,6 @@ const ShopContextProvider = (props) => {
     }
     return totalItem;
   }
-
-  useEffect(() => {
-    const totalAmount = getTotalCartAmount();
-    console.log("Total Cart Amount on cartItems change:", getTotalCartAmount());
-  }, [cartItems]);
-
-  // console.log("All Products:", all_products);
-  // console.log("Cart Items:", cartItems);
-  // console.log("Calculated Total Amount:", getTotalCartAmount());
 
   const contextValue = {
     getTotalCartAmount,

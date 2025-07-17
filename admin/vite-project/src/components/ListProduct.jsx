@@ -33,7 +33,7 @@ const ListProduct = () => {
       const data = await res.json();
       if (data.success) {
         setAllproducts((prevProducts) =>
-          prevProducts.filter((product) => product._id !== id)
+          prevProducts.filter((product) => product.id !== id)
         );
         alert("Product removed successfully.");
       } else {
@@ -50,7 +50,7 @@ const ListProduct = () => {
   }, []);
 
   return (
-    <div className="ml-96 p-2 box-border bg-white mb-0 rounded-sm w-full mt-4 sm:p-4 sm:m-7">
+    <div className="p-2 box-border bg-white mb-0 rounded-sm w-full mt-4 sm:p-4 sm:m-7">
       <h4 className="bold-22 p-5 uppercase">Product List</h4>
       <div className="max-h-[77vh] overflow-auto px-4 text-center">
         <table className="w-full mx-auto">
@@ -67,7 +67,7 @@ const ListProduct = () => {
             {allproducts.length > 0 ? (
               allproducts.map((product) => (
                 <tr
-                  key={product._id}
+                  key={product.id}
                   className="border-b border-slate-900/20 text-gray-20 p-6 medium-14"
                 >
                   <td className="flex justify-center">
@@ -86,7 +86,7 @@ const ListProduct = () => {
                   <td>${product.new_price}</td>
                   <td>{product.category}</td>
                   <td>
-                    <button onClick={() => handleRemove(product._id)}>
+                    <button onClick={() => handleRemove(product.id)}>
                       <div className="text-red-500 hover:text-red-700">
                         <TbTrash />
                       </div>

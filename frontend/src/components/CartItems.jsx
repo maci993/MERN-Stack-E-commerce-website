@@ -5,6 +5,7 @@ import {TbTrash} from "react-icons/tb";
 
 const CartItems = () => {
   const { getTotalCartAmount, all_products, cartItems, removeFromCart } = useContext(ShopContext);
+  
   return (
     <section className="max_padd_container pt-28">
       <table className="w-full mx-auto">
@@ -34,7 +35,7 @@ const CartItems = () => {
                   <td>${e.new_price * cartItems[e.id]}</td>
                   <td>
                     <div className="bold-22 pl-14">
-                        <TbTrash onClick={() => removeFromCart(e.id)}/>
+                        <TbTrash onClick={() => removeFromCart(e.id)} className="cursor-pointer hover:text-red-500"/>
                     </div>
                   </td>
                 </tr>

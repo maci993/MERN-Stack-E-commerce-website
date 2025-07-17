@@ -49,7 +49,7 @@ const ProductDisplay = (props) => {
         </div>
         
             <div className='flex flex-col gap-y-3 mb-4 max-w-[555px]'>
-                <button onClick={() => {addToCart(product.id)}}className='btn_dark_outline !rounded-none uppercase regular-14 tracking-widest'>Add to cart</button>
+                <button onClick={() => {addToCart(product.id)}} className='btn_dark_outline !rounded-none uppercase regular-14 tracking-widest'>Add to cart</button>
                 <button className='btn_dark_outline !rounded-none uppercase regular-14 tracking-widest'>Buy it now</button>
             </div>
             <p><span className='medium-16 text-tertiary'>Category:</span> Women | Jacket | Winter</p>
