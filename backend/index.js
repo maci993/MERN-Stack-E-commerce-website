@@ -12,7 +12,7 @@ app.use(cors({ origin: "http://localhost:5173" }));
 
 
 mongoose.connect(
-  "mongodb+srv://savicmarina993:user123@cluster0.vundx.mongodb.net/Ecommerce-mern?retryWrites=true&w=majority&appName=Cluster0"
+  
 );
 
 app.get("/", (req, res) => {
