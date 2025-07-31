@@ -26,6 +26,7 @@ const Item = ({ id, name, image, old_price, new_price }) => {
       </div>
       </div>
     </div>
+  )
   );
 };
 
