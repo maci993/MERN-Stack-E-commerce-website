@@ -15,7 +15,7 @@ export default {
         'full': '9999px', // Ensures rounded-full works if needed
       },
       colors: {
-        // primary: '#f0f2f5',
+        primary: '#f0f2f5',
         secondary: '#ff813f',
         tertiary: '#222222',
         slate: {

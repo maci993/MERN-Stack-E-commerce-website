@@ -23,7 +23,7 @@ const Header = () => {
       <div className="px-4 flexBetween py-3 max-xs:px-2">
         <div>
           {/* logo */}
-          <Link>
+          <Link to="/">
             <img src={logo} alt="" height={66} width={88} />
           </Link>
         </div>

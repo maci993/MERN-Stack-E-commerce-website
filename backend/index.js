@@ -8,12 +8,21 @@ const path = require("path");
 const cors = require("cors");
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ 
+  origin: ["http://localhost:5173", "http://localhost:5174"],
+  credentials: true 
+}));
 
 
-mongoose.connect(
-  
-);
+// MongoDB connection
+mongoose.connect("mongodb://localhost:27017/ecommerce", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log("Connected to MongoDB");
+}).catch((error) => {
+  console.error("MongoDB connection error:", error);
+});
 
 app.get("/", (req, res) => {
   res.send("Express App is running");
